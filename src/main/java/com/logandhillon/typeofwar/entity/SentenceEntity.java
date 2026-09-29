@@ -272,12 +272,6 @@ public class SentenceEntity extends BoundEntity<TypeOfWarScene> {
 
         // increment correct word count if the input matches the sentence
         if (text[currentWord].contentEquals(input[currentWord])) correctWords++;
-
-        // if all words are correct then finish the session
-        if (correctWords == text.length) {
-            isComplete = true;
-            parent.onTypingFinished();
-        }
     }
 
     @Override
