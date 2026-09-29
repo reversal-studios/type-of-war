@@ -178,7 +178,9 @@ public class TypeOfWar extends Application {
                        .toList();
 
             try {
-                sentence = customSentence.isBlank() ? WordGen.generateSentence(10000) : customSentence;
+                sentence = customSentence.isBlank()
+                           ? WordGen.generateSentence(10_000)
+                           : WordGen.loopSentence(customSentence, 3_000);
             } catch (IOException e) {
                 LOG.fatal("Could not generate sentence", e);
             }
@@ -254,9 +256,10 @@ public class TypeOfWar extends Application {
 
         if (client != null) throw new IllegalStateException("Client already exists, cannot establish connection");
 
-        setScene(new MenuQuestionScene("JOINING SERVER...", "CHOOSE A TEAM TO JOIN.",
-                                       "TEAM 1", () -> joinGameWithTeam(host, port, 1),
-                                       "TEAM 2", () -> joinGameWithTeam(host, port, 2)));
+        setScene(new MenuQuestionScene(
+                "JOINING SERVER...", "CHOOSE A TEAM TO JOIN.",
+                "TEAM 1", () -> joinGameWithTeam(host, port, 1),
+                "TEAM 2", () -> joinGameWithTeam(host, port, 2)));
     }
 
     private void joinGameWithTeam(String host, int port, int team) {
