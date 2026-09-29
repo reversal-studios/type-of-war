@@ -100,14 +100,6 @@ public class TypeOfWarScene extends GameScene {
     }
 
     /**
-     * Marks this typing session as finished, and propagates that information to {@link GameStatisticsEntity}.
-     */
-    public void onTypingFinished() {
-        LOG.info("Typing finished, closing session");
-        stats.finishSession();
-    }
-
-    /**
      * Handles a correct key press
      *
      * @throws IllegalStateException if there is no active server or client
